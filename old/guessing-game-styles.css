@@ -11,7 +11,7 @@ h1{
   padding-top: 10px;
   padding-bottom: 20px;
 }
-
+/*
 .padding-div{
   padding-top: 150px;
 }
@@ -21,15 +21,15 @@ h1{
   margin: 0 0;
   width: 100%;
   float: left;
-}
+} */
 
 .container{
   padding-left: 10px;
   padding-right: 10px;
   width: calc(100% - 20px);
   max-width: 1200px;
-  margin: 0 auto; 
-  min-height: 100vh;
+  margin: 50px auto 50px auto; 
+  min-height: 100vh;  
   text-align: center;
   background-color: white;
 }
@@ -45,7 +45,7 @@ h1{
   padding-left: 10px;
   padding-right: 10px;
   margin-bottom: 20px;
-    max-width: 380px;   
+  max-width: 380px;   
   width: calc(100% - 20px);
  } 
  
@@ -96,8 +96,8 @@ h1{
 }
 
 .responsive-image{
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  text-align: center;
-}
+ /* width: 100%; */  
+    max-width: 300px; 
+    height: auto; 
+    text-align: center;
+} 
