@@ -1,49 +1,123 @@
 /* **** Global Variables **** */
 // try to elminate these global variables in your project, these are here just to start.
 
-var playersGuess,
-    winningNumber
-
-
 
 /* **** Guessing Game Functions **** */
 
 // Generate the Winning Number
+$(document).ready(function(){
+var playersGuess;
+var winningNumber = generateWinningNumber();
+var guesses=[];
+var guessCount = 0;
+
+
 
 function generateWinningNumber(){
-	// add code here
+	return Math.ceil(Math.random() * 100);
 }
 
 // Fetch the Players Guess
 
 function playersGuessSubmission(){
-	// add code here
+	playersGuess = +$('#numerical-guess').val()
+  guessCount++;
+  //$(this).remove();
 }
 
 // Determine if the next guess should be a lower or higher number
 
 function lowerOrHigher(){
-	// add code here
+      if(playersGuess > winningNumber){
+        return 'high';
+      }
+      else{
+        return "low";
+      }
 }
+
+// function guessMessage(){
+//   //var lowhigh = lowerOrHigher();
+//   var distance = Math.abs(playersGuess - winningNumber);
+//   var hint = '';
+//   if(guesses.length === 0){
+//     $('.hintMessage').text('Nice try.');
+//   }
+//   else if(distance > 20){
+//     $('hintMessage').text('Way too ' + lowerOrHigher() + '.');
+//   }
+//   else{
+//       $('.hintMessage').text('SO close! A little ' + lowerOrHigher() + ', but within 20 digits.');
+//   }
+// }
+
+
+function guessMessage(){
+  var distance = Math.abs(playersGuess - winningNumber);
+  if(distance > 20){
+    $('#result').text('Way too ' + lowerOrHigher() + '.');
+  }
+  else{
+      $('#result').text('SO close! A little ' + lowerOrHigher() + ', but within 20 digits.');
+  }
+}
+
 
 // Check if the Player's Guess is the winning number 
 
 function checkGuess(){
-	// add code here
+	if(playersGuess === winningNumber){
+    $('#result').text("winner winner chicken dinner!");
+  }
+  else {
+    if(guesses.indexOf(playersGuess) === -1){
+      guesses.push(playersGuess);
+      guessMessage();
+    }
+    else{
+      $('#result').text("Be more creative with your choices...")
+    }  
+  }
 }
 
 // Create a provide hint button that provides additional clues to the "Player"
 
 function provideHint(){
-	// add code here
+	var randNum1 = Math.ceil(Math.random() * 100);
+  var randNum2 = Math.ceil(Math.random() * 100);
+  var hintArray = [randNum1, randNum2, winningNumber].sort(function() { return .5 - Math.random(); });
+  $('.hintMessage').text("Try one of these:   [" + hintArray.join(', ') + "]");
 }
 
 // Allow the "Player" to Play Again
 
-function playAgain(){
-	// add code here
+function playAgain(event){
+  event.preventDefault();
+  location.reload();
 }
+
 
 
 /* **** Event Listeners/Handlers ****  */
 
+  generateWinningNumber();
+  $(document).keypress(function(event){
+    if(event.which == 13){
+      playersGuessSubmission();
+      checkGuess();
+      //$(playersGuess).remove();
+    }
+  });
+
+  $('.guess-btn').on('click', function(event){
+    event.preventDefault();
+    playersGuessSubmission();
+    checkGuess();
+    $(playersGuess).remove();
+  });
+  $('.hint').on('click', function(event){
+    event.preventDefault();
+    provideHint();
+  });
+  $('.play-again-btn').on('click', playAgain);
+});

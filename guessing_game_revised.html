@@ -3,16 +3,23 @@
 <head>
   <title>Guessing Game</title>
   <link type="text/css" rel="stylesheet" href="styles.css">
+  <script src="jquery.min.js"></script>
+  <script src='guessingGame.js'></script>
   <link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <header>Guess The Number</header>
   <form>
+  <header>Guess The Number</header>
+  <div id="result">
+  <p class="win-or-lose"></p>
+  </div>
   <input type="text" id="numerical-guess" placeholder="enter a number 1-100">
   <button type="button" class="guess-btn">SUBMIT</button>
   <button type="button" class="play-again-btn">PLAY AGAIN</button>
-  <form>
+  <button type="button" class="hint">want a hint?</button>
+  <p class="hintMessage"></p>
+  </form>
 </body>
 
 
