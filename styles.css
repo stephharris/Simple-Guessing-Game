@@ -8,13 +8,52 @@ header {
   text-transform: uppercase;
 }
 
+h1 {
+  font-family: Oswald, sans-serif;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20em;
+  min-width: 300px;
+  margin: 50px auto 0px auto;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 body {
   background: #f85855;
 }
 
-form {
-  padding: 0px auto 0px auto;
-  margin: 20px auto 0px auto;
+
+
+/*.win-img {
+  max-width: 500px; 
+  height: auto; 
+  text-align: center;
+  display: none;*/
+  /*padding: 0px auto 0px auto;
+  margin: 20px auto 0px auto;*/
+
+
+
+.winner {
+  display: none;
+  -webkit-animation-name: winner;
+  -webkit-animation-duration: .5s;
+  animation-name: winner;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+}
+ 
+
+
+@-webkit-keyframes winner {
+  0% {color: white;}
+  50% {color: black;}
+}
+
+@keyframes winner {
+  0% {color: white;}
+  50% {color: black;}
 }
 
 #result {

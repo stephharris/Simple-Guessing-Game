@@ -22,7 +22,7 @@ function generateWinningNumber(){
 function playersGuessSubmission(){
 	playersGuess = +$('#numerical-guess').val()
   guessCount++;
-  //$(this).remove();
+  $('#numerical-guess').val('');
 }
 
 // Determine if the next guess should be a lower or higher number
@@ -36,21 +36,6 @@ function lowerOrHigher(){
       }
 }
 
-// function guessMessage(){
-//   //var lowhigh = lowerOrHigher();
-//   var distance = Math.abs(playersGuess - winningNumber);
-//   var hint = '';
-//   if(guesses.length === 0){
-//     $('.hintMessage').text('Nice try.');
-//   }
-//   else if(distance > 20){
-//     $('hintMessage').text('Way too ' + lowerOrHigher() + '.');
-//   }
-//   else{
-//       $('.hintMessage').text('SO close! A little ' + lowerOrHigher() + ', but within 20 digits.');
-//   }
-// }
-
 
 function guessMessage(){
   var distance = Math.abs(playersGuess - winningNumber);
@@ -63,11 +48,26 @@ function guessMessage(){
 }
 
 
+//winner function
+function winner(){
+  $('header').hide();
+  $('#result').hide();
+  $('#numerical-guess').hide();
+  $('.guess-btn').hide();
+  $('.hint').hide();
+  $('.hintMessage').hide();
+  //$('.container').animate({ 'display': 'block' })
+  $('.winner').show()
+}
+
+
+
 // Check if the Player's Guess is the winning number 
 
 function checkGuess(){
 	if(playersGuess === winningNumber){
-    $('#result').text("winner winner chicken dinner!");
+    //$('#result').text("winner winner chicken dinner!");
+    return winner();
   }
   else {
     if(guesses.indexOf(playersGuess) === -1){
@@ -105,7 +105,6 @@ function playAgain(event){
     if(event.which == 13){
       playersGuessSubmission();
       checkGuess();
-      //$(playersGuess).remove();
     }
   });
 
@@ -117,7 +116,8 @@ function playAgain(event){
   });
   $('.hint').on('click', function(event){
     event.preventDefault();
-    provideHint();
+    provideHint().fadeToggle();;
   });
+
   $('.play-again-btn').on('click', playAgain);
 });
